@@ -104,6 +104,7 @@ export default class SelectTrigger extends React.Component {
         defaultActiveFirstOption={props.defaultActiveFirstOption}
         dropdownMenuStyle={props.dropdownMenuStyle}
         menuItemSelectedIcon={props.menuItemSelectedIcon}
+        renderExtraTopper={props.renderExtraTopper}
       />
     );
   };
@@ -133,6 +134,7 @@ export default class SelectTrigger extends React.Component {
       dropdownClassName,
       dropdownStyle,
       dropdownMatchSelectWidth,
+      renderExtraTopper
     } = props;
     const dropdownPrefixCls = this.getDropdownPrefixCls();
     const popupClassName = {
@@ -177,6 +179,7 @@ export default class SelectTrigger extends React.Component {
         getPopupContainer={props.getPopupContainer}
         popupClassName={classnames(popupClassName)}
         popupStyle={popupStyle}
+        renderExtraTopper={renderExtraTopper}
       >
         {props.children}
       </Trigger>
