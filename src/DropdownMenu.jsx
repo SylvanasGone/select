@@ -91,6 +91,15 @@ export default class DropdownMenu extends React.Component {
     });
   };
 
+  renderTopper = (...args) => {
+    const { renderExtraTopper } = this.props;
+    return renderExtraTopper ? (
+      <div style={{ padding: '10px' }}>
+        {renderExtraTopper(...args)}
+      </div>
+    ) : null;
+  }
+
   renderMenu() {
     const props = this.props;
     const {
@@ -182,6 +191,7 @@ export default class DropdownMenu extends React.Component {
   }
 
   render() {
+    const renderTopper = this.renderTopper();
     const renderMenu = this.renderMenu();
     return renderMenu ? (
       <div
@@ -193,6 +203,7 @@ export default class DropdownMenu extends React.Component {
         onMouseDown={preventDefaultEvent}
         onScroll={this.props.onPopupScroll}
       >
+        {renderTopper}
         {renderMenu}
       </div>
     ) : null;
