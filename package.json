@@ -1,7 +1,7 @@
 {
-  "name": "rc-select",
-  "version": "8.4.1",
-  "description": "React Select",
+  "name": "@fdp/rc-select",
+  "version": "1.0.0",
+  "description": "React Select for ZA-fdp based on rc-select",
   "keywords": [
     "react",
     "react-component",
@@ -15,13 +15,10 @@
     "es",
     "lib"
   ],
-  "homepage": "http://github.com/react-component/select",
+  "homepage": "https://github.com/SylvanasGone/select",
   "repository": {
     "type": "git",
-    "url": "git@github.com:react-component/select.git"
-  },
-  "bugs": {
-    "url": "http://github.com/react-component/select/issues"
+    "url": "git@github.com:SylvanasGone/select.git"
   },
   "license": "MIT",
   "config": {
