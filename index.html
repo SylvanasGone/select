@@ -7,7 +7,7 @@
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" rel="stylesheet"/>
-  <title>@fdp/rc-select@12.0.0 - React Select for ZA-fdp based on rc-select</title>
+  <title>@fdp/rc-select@12.0.2 - React Select for ZA-fdp based on rc-select</title>
   <style>
     @font-face {
       font-family: octicons-anchor;
@@ -737,7 +737,7 @@
 
 <body>
 <div class="header">
-  <h1>@fdp/rc-select@12.0.0</h1>
+  <h1>@fdp/rc-select@12.0.2</h1>
 </div>
 <div class="examples">
   <h3>EXAMPLES</h3>
@@ -788,12 +788,6 @@
   <div class="markdown-body">
     <h1>rc-select<a id="user-content-rc-select" name="rc-select" class="anchor" aria-hidden="true" href="#rc-select"><span class="octicon octicon-link"></span></a></h1><hr>
 <p>React Select</p>
-<p><a href="http://npmjs.org/package/rc-select" title="null"><img src="http://img.shields.io/npm/v/rc-select.svg?style=flat-square" alt="NPM version"></a>
-<a href="https://travis-ci.org/react-component/select" title="null"><img src="https://img.shields.io/travis/react-component/select.svg?style=flat-square" alt="build status"></a>
-<a href="https://coveralls.io/r/react-component/select?branch=master" title="null"><img src="https://img.shields.io/coveralls/react-component/select.svg?style=flat-square" alt="Test coverage"></a>
-<a href="https://gemnasium.com/react-component/select" title="null"><img src="http://img.shields.io/gemnasium/react-component/select.svg?style=flat-square" alt="gemnasium deps"></a>
-<a href="https://npmjs.org/package/rc-select" title="null"><img src="https://img.shields.io/npm/dm/rc-select.svg?style=flat-square" alt="npm download"></a></p>
-<h2>Screenshots<a id="user-content-screenshots" name="screenshots" class="anchor" aria-hidden="true" href="#screenshots"><span class="octicon octicon-link"></span></a></h2><p><img src="https://tfsimg.alipay.com/images/T1CUBeXa0kXXXXXXXX.png" /></p>
 <h2>Feature<a id="user-content-feature" name="feature" class="anchor" aria-hidden="true" href="#feature"><span class="octicon octicon-link"></span></a></h2><ul>
 <li>support ie9,ie9+,chrome,firefox,safari</li>
 </ul>
@@ -801,14 +795,15 @@
 <li>Open select (focus input || focus and click)</li>
 <li>KeyDown/KeyUp/Enter to navigate menu</li>
 </ul>
-<h2>install<a id="user-content-install" name="install" class="anchor" aria-hidden="true" href="#install"><span class="octicon octicon-link"></span></a></h2><p><a href="https://npmjs.org/package/rc-select" title="null"><img src="https://nodei.co/npm/rc-select.png" alt="rc-select"></a></p>
+<h2>install<a id="user-content-install" name="install" class="anchor" aria-hidden="true" href="#install"><span class="octicon octicon-link"></span></a></h2><ul>
+<li>yarn add @fdp/rc-select</li>
+</ul>
 <h2>Usage<a id="user-content-usage" name="usage" class="anchor" aria-hidden="true" href="#usage"><span class="octicon octicon-link"></span></a></h2><h3>basic use<a id="user-content-basic-use" name="basic-use" class="anchor" aria-hidden="true" href="#basic-use"><span class="octicon octicon-link"></span></a></h3><div class="highlight"><pre><code language="js"><span class="hljs-keyword">import</span> Select, {Option, OptGroup} <span class="hljs-keyword">from</span> <span class="hljs-string">'rc-select'</span>;
 
 <span class="hljs-keyword">var</span> c = (
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Select</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">Option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"jack"</span>&gt;</span>jack<span class="hljs-tag">&lt;/<span class="hljs-title">Option</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">Option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"lucy"</span>&gt;</span>lucy<span class="hljs-tag">&lt;/<span class="hljs-title">Option</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">Option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"yiminghe"</span>&gt;</span>yiminghe<span class="hljs-tag">&lt;/<span class="hljs-title">Option</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">Select</span>&gt;</span>
 )</span>;
 React.render(c, container);</code></pre></div><h2>API<a id="user-content-api" name="api" class="anchor" aria-hidden="true" href="#api"><span class="octicon octicon-link"></span></a></h2><h3>Select props<a id="user-content-select-props" name="select-props" class="anchor" aria-hidden="true" href="#select-props"><span class="octicon octicon-link"></span></a></h3><table>
@@ -1140,6 +1135,12 @@ React.render(c, container);</code></pre></div><h2>API<a id="user-content-api" na
 <td>(props: MenuItemProps) =&gt; ReactNode</td>
 <td>-</td>
 </tr>
+<tr>
+<td>renderExtraTopper</td>
+<td>新增下拉框头部定制功能</td>
+<td>() =&gt; React.ReactNode</td>
+<td>-</td>
+</tr>
 </tbody>
 </table>
 <h3>Methods<a id="user-content-methods" name="methods" class="anchor" aria-hidden="true" href="#methods"><span class="octicon octicon-link"></span></a></h3><table>
@@ -1240,12 +1241,11 @@ React.render(c, container);</code></pre></div><h2>API<a id="user-content-api" na
 </table>
 <h2>Development<a id="user-content-development" name="development" class="anchor" aria-hidden="true" href="#development"><span class="octicon octicon-link"></span></a></h2><div class="highlight"><pre><code language="undefined">npm install
 npm start</code></pre></div><h2>Example<a id="user-content-example" name="example" class="anchor" aria-hidden="true" href="#example"><span class="octicon octicon-link"></span></a></h2><p><a href="http://localhost:8003/examples/" title="null">http://localhost:8003/examples/</a></p>
-<p>online example: <a href="http://react-component.github.io/select/examples/" title="null">http://react-component.github.io/select/examples/</a></p>
 <h2>Test Case<a id="user-content-test-case" name="test-case" class="anchor" aria-hidden="true" href="#test-case"><span class="octicon octicon-link"></span></a></h2><div class="highlight"><pre><code language="undefined">npm test</code></pre></div><h2>Coverage<a id="user-content-coverage" name="coverage" class="anchor" aria-hidden="true" href="#coverage"><span class="octicon octicon-link"></span></a></h2><div class="highlight"><pre><code language="undefined">npm run coverage</code></pre></div><h2>License<a id="user-content-license" name="license" class="anchor" aria-hidden="true" href="#license"><span class="octicon octicon-link"></span></a></h2><p>rc-select is released under the MIT license.</p>
 
   </div>
 </div>
-<a href="https://github.com/SylvanasGone/select"><img style="position: absolute; top: 0; right: 0; border: 0;"
+<a href=""><img style="position: absolute; top: 0; right: 0; border: 0;"
                             src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
                             alt="Fork me on GitHub"
                             data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
