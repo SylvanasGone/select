@@ -3,29 +3,6 @@
 
 React Select
 
-[![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![Test coverage][coveralls-image]][coveralls-url]
-[![gemnasium deps][gemnasium-image]][gemnasium-url]
-[![npm download][download-image]][download-url]
-
-[npm-image]: http://img.shields.io/npm/v/rc-select.svg?style=flat-square
-[npm-url]: http://npmjs.org/package/rc-select
-[travis-image]: https://img.shields.io/travis/react-component/select.svg?style=flat-square
-[travis-url]: https://travis-ci.org/react-component/select
-[coveralls-image]: https://img.shields.io/coveralls/react-component/select.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/react-component/select?branch=master
-[gemnasium-image]: http://img.shields.io/gemnasium/react-component/select.svg?style=flat-square
-[gemnasium-url]: https://gemnasium.com/react-component/select
-[node-image]: https://img.shields.io/badge/node.js-%3E=_0.10-green.svg?style=flat-square
-[node-url]: http://nodejs.org/download/
-[download-image]: https://img.shields.io/npm/dm/rc-select.svg?style=flat-square
-[download-url]: https://npmjs.org/package/rc-select
-
-## Screenshots
-
-<img src="https://tfsimg.alipay.com/images/T1CUBeXa0kXXXXXXXX.png" />
-
 ## Feature
 
 * support ie9,ie9+,chrome,firefox,safari
@@ -37,7 +14,7 @@ React Select
 
 ## install
 
-[![rc-select](https://nodei.co/npm/rc-select.png)](https://npmjs.org/package/rc-select)
+- yarn add @fdp/rc-select
 
 ## Usage
 
@@ -50,7 +27,6 @@ var c = (
   <Select>
     <Option value="jack">jack</Option>
     <Option value="lucy">lucy</Option>
-    <Option value="yiminghe">yiminghe</Option>
   </Select>
 );
 React.render(c, container);
@@ -115,6 +91,7 @@ React.render(c, container);
 | clearIcon | specify the clear icon | ReactNode | - |
 | removeIcon | specify the remove icon | ReactNode | - |
 | menuItemSelectedIcon | specify the remove icon | ReactNode \| (props: MenuItemProps) => ReactNode | - |
+| renderExtraTopper | 新增下拉框头部定制功能 | () => React.ReactNode | - |
 
 
 ### Methods
@@ -154,8 +131,6 @@ npm start
 ## Example
 
 http://localhost:8003/examples/
-
-online example: http://react-component.github.io/select/examples/
 
 ## Test Case
 
