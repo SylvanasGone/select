@@ -15,11 +15,6 @@
     "es",
     "lib"
   ],
-  "homepage": "https://github.com/SylvanasGone/select",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:SylvanasGone/select.git"
-  },
   "license": "MIT",
   "config": {
     "port": 8003
