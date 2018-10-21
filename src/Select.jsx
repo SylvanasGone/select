@@ -80,6 +80,8 @@ class Select extends React.Component {
     showAction: ['click'],
     tokenSeparators: [],
     autoClearSearchValue: true,
+    renderExtraTopper: noop,
+    showChosenAmount: false
   };
 
   constructor(props) {
@@ -96,6 +98,7 @@ class Select extends React.Component {
       optionsInfo,
       // a flag for aviod redundant getOptionsInfoFromProps call
       skipBuildOptionsInfo: true,
+      defaultAmount: '请选择',
     };
 
     this.saveInputRef = saveRef(this, 'inputRef');
@@ -1310,7 +1313,7 @@ class Select extends React.Component {
     const state = this.state;
     const { className, disabled, prefixCls, inputIcon } = props;
     const ctrlNode = this.renderTopControlNode();
-    const { open } = this.state;
+    const { open, defaultAmount } = this.state;
     if (open) {
       this._options = this.renderFilterOptions();
     }
@@ -1377,6 +1380,7 @@ class Select extends React.Component {
         ref={this.saveSelectTriggerRef}
         menuItemSelectedIcon={props.menuItemSelectedIcon}
         renderExtraTopper={props.renderExtraTopper}
+        showChosenAmount={props.showChosenAmount}
       >
         <div
           id={props.id}
@@ -1400,7 +1404,8 @@ class Select extends React.Component {
             aria-expanded={realOpen}
             {...extraSelectionProps}
           >
-            {ctrlNode}
+            {/* {ctrlNode} */}
+            {defaultAmount}
             {this.renderClear()}
             {multiple || !props.showArrow ? null : (
               <span
