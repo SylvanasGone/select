@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 const children = [];
 for (let i = 10; i < 36; i++) {
   children.push(
-    <Option key={i.toString(36) + i} disabled={i === 10} title={`中文${i}`}>
+    <Option key={i.toString(36) + i} title={`中文${i}`}>
       中文{i}
     </Option>
   );
@@ -17,7 +17,7 @@ for (let i = 10; i < 36; i++) {
 class Test extends React.Component {
   state = {
     useAnim: 0,
-    value: ['a10'],
+    value: [],
   }
 
   onChange = (value, options) => {
@@ -61,7 +61,7 @@ class Test extends React.Component {
             animation={this.state.useAnim ? 'slide-up' : null}
             choiceTransitionName="rc-select-selection__choice-zoom"
             dropdownMenuStyle={dropdownMenuStyle}
-            style={{ width: 500 }}
+            style={{ width: '300px' }}
             multiple
             allowClear
             optionFilterProp="children"
@@ -73,6 +73,8 @@ class Test extends React.Component {
             onFocus={() => console.log('focus')}
             onBlur={(v) => console.log('blur', v)}
             tokenSeparators={[' ', ',']}
+            renderExtraTopper={() => '自定义头部内容'}
+            showChosenAmount
           >
             {children}
           </Select>
