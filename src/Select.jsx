@@ -98,7 +98,7 @@ class Select extends React.Component {
       optionsInfo,
       // a flag for aviod redundant getOptionsInfoFromProps call
       skipBuildOptionsInfo: true,
-      defaultAmount: '请选择',
+      chosenAmount: '请选择',
     };
 
     this.saveInputRef = saveRef(this, 'inputRef');
@@ -116,7 +116,7 @@ class Select extends React.Component {
   }
 
   componentDidUpdate() {
-    if (isMultipleOrTags(this.props)) {
+    /* if (isMultipleOrTags(this.props)) {
       const inputNode = this.getInputDOMNode();
       const mirrorNode = this.getInputMirrorDOMNode();
       if (inputNode.value) {
@@ -125,7 +125,7 @@ class Select extends React.Component {
       } else {
         inputNode.style.width = '';
       }
-    }
+    } */
     this.forcePopupAlign();
   }
 
@@ -261,7 +261,13 @@ class Select extends React.Component {
       if (findIndexInValueBySingleValue(value, selectedValue) !== -1) {
         return;
       }
+
       value = value.concat([selectedValue]);
+      if (props.showChosenAmount) {
+        this.setState({
+          chosenAmount: `${value.length}个`
+        })
+      }
     } else {
       if (
         lastValue !== undefined &&
@@ -297,6 +303,18 @@ class Select extends React.Component {
     const { props } = this;
     if (props.autoClearSearchValue) {
       this.setInputValue('', false);
+    }
+    if (props.showChosenAmount) {
+      const { value } = this.state
+      this.setState({
+        chosenAmount: `${value.length - 1}个`
+      }, () => {
+        if (value.length === 1) {
+          this.setState({
+            chosenAmount: '请选择'
+          })
+        }
+      })
     }
   };
 
@@ -404,6 +422,9 @@ class Select extends React.Component {
     if (inputValue || value.length) {
       if (value.length) {
         this.fireChange([]);
+        this.setState({
+          chosenAmount: '请选择'
+        })
       }
       this.setOpenState(false, true);
       if (inputValue) {
@@ -1307,13 +1328,25 @@ class Select extends React.Component {
     return null;
   }
 
+  renderChosenAmount () {
+    const { chosenAmount } = this.state;
+    const { prefixCls } = this.props;
+    const className = `${prefixCls}-selection__rendered`;
+
+    return (
+      <div className={className} ref={this.saveTopCtrlRef} onMouseDown={preventDefaultEvent}>
+        <input style={{ border: 'none', cursor: 'unset' }} type="text" readOnly value={chosenAmount}/>
+      </div>
+    )
+  }
+
   render() {
     const props = this.props;
     const multiple = isMultipleOrTags(props);
     const state = this.state;
-    const { className, disabled, prefixCls, inputIcon } = props;
+    const { className, disabled, prefixCls, inputIcon, showChosenAmount } = props;
     const ctrlNode = this.renderTopControlNode();
-    const { open, defaultAmount } = this.state;
+    const { open } = this.state;
     if (open) {
       this._options = this.renderFilterOptions();
     }
@@ -1404,8 +1437,7 @@ class Select extends React.Component {
             aria-expanded={realOpen}
             {...extraSelectionProps}
           >
-            {/* {ctrlNode} */}
-            {defaultAmount}
+            {showChosenAmount ? this.renderChosenAmount() : ctrlNode}
             {this.renderClear()}
             {multiple || !props.showArrow ? null : (
               <span
