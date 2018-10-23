@@ -100,6 +100,15 @@ export default class DropdownMenu extends React.Component {
     ) : null;
   }
 
+  renderCustomDropDown = (...args) => {
+    const { customDropDown } = this.props;
+    return (
+      <div style={{ padding: '10px' }}>
+        {customDropDown(...args)}
+      </div>
+    )
+  }
+
   renderMenu() {
     const props = this.props;
     const {
@@ -193,18 +202,21 @@ export default class DropdownMenu extends React.Component {
   render() {
     const renderTopper = this.renderTopper();
     const renderMenu = this.renderMenu();
+    const renderCustomDropDown = this.renderCustomDropDown();
+    const { onPopupFocus, onPopupScroll, customDropDown } = this.props;
+
     return renderMenu ? (
       <div
         style={{
           overflow: 'auto',
           transform: 'translateZ(0)',
         }}
-        onFocus={this.props.onPopupFocus}
+        onFocus={onPopupFocus}
         onMouseDown={preventDefaultEvent}
-        onScroll={this.props.onPopupScroll}
+        onScroll={onPopupScroll}
       >
         {renderTopper}
-        {renderMenu}
+        {customDropDown ? renderCustomDropDown : renderMenu}
       </div>
     ) : null;
   }

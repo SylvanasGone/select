@@ -82,6 +82,7 @@ class Test extends React.Component {
             renderExtraTopper={() => '自定义头部内容'}
             showChosenAmount
             customAmount={this.state.chosenAmount}
+            customDropDown={() => (<div><h1>自定义下拉框内容</h1></div>)}
           >
             {children}
           </Select>

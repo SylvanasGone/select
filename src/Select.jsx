@@ -1414,6 +1414,7 @@ class Select extends React.Component {
         renderExtraTopper={props.renderExtraTopper}
         showChosenAmount={props.showChosenAmount}
         customAmount={props.customAmount}
+        customDropDown={props.customDropDown}
       >
         <div
           id={props.id}
