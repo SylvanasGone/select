@@ -102,11 +102,11 @@ export default class DropdownMenu extends React.Component {
 
   renderCustomDropDown = (...args) => {
     const { customDropDown } = this.props;
-    return (
+    return customDropDown ? (
       <div style={{ padding: '10px' }}>
         {customDropDown(...args)}
       </div>
-    )
+    ) : null
   }
 
   renderMenu() {
