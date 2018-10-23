@@ -1,6 +1,6 @@
 {
-  "name": "rc-select",
-  "version": "12.0.6",
+  "name": "@fdp/rc-select",
+  "version": "12.0.7",
   "description": "React Select for ZA-fdp based on rc-select",
   "keywords": [
     "react",
