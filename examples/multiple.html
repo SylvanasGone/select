@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>multiple.js - example - @fdp/rc-select@12.0.5</title>
+  <title>multiple.js - example - @fdp/rc-select@12.0.6</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -263,107 +263,108 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 <body>
   <div class="container">
     <div class="header">
-      <h1>@fdp/rc-select@12.0.5</h1>
+      <h1>@fdp/rc-select@12.0.6</h1>
 
       <p>React Select for ZA-fdp based on rc-select</p>
     </div>
     <div class="example" id="__react-content"></div>
 
-    <div class="highlight"><pre><code language="js"><span class="hljs-comment">/* eslint no-console: 0 */</span>
+    <div class="highlight"><pre><code language="undefined">/* eslint no-console: 0 */
 
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> Select, { Option } <span class="hljs-keyword">from</span> <span class="hljs-string">'rc-select'</span>;
-<span class="hljs-keyword">import</span> <span class="hljs-string">'rc-select/assets/index.less'</span>;
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+import React from 'react';
+import Select, { Option } from 'rc-select';
+import 'rc-select/assets/index.less';
+import ReactDOM from 'react-dom';
 
-<span class="hljs-keyword">const</span> children = [];
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">10</span>; i &lt; <span class="hljs-number">36</span>; i++) {
+const children = [];
+for (let i = 10; i &lt; 36; i++) {
   children.push(
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Option</span> <span class="hljs-attribute">key</span>=<span class="hljs-value">{i.toString(36)</span> + <span class="hljs-attribute">i</span>} <span class="hljs-attribute">title</span>=<span class="hljs-value">{`中文${i}`}</span>&gt;</span>
+    &lt;Option key={i.toString(36) + i} title={`中文${i}`}&gt;
       中文{i}
-    <span class="hljs-tag">&lt;/<span class="hljs-title">Option</span>&gt;</span>
-  )</span>;
+    &lt;/Option&gt;
+  );
 }
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+class Test extends React.Component {
   state = {
-    useAnim: <span class="hljs-number">0</span>,
+    useAnim: 0,
     value: [],
-    chosenAmount: <span class="hljs-string">'请选择'</span>
+    chosenAmount: '请选择'
   }
 
   onChange = (value, options) =&gt; {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'onChange'</span>, value, options);
-    <span class="hljs-keyword">let</span> chosenAmount = 
-      value.length === <span class="hljs-number">0</span> 
-        ? <span class="hljs-string">'请选择'</span> 
-        : value.length === children.length ? <span class="hljs-string">'全部'</span> : <span class="hljs-string">`<span class="hljs-subst">${value.length}</span>个`</span>;
-    <span class="hljs-keyword">this</span>.setState({
+    console.log('onChange', value, options);
+    let chosenAmount = 
+      value.length === 0 
+        ? '请选择' 
+        : value.length === children.length ? '全部' : `${value.length}个`;
+    this.setState({
       value,
       chosenAmount
     });
   }
 
   onSelect = (...args) =&gt; {
-    <span class="hljs-built_in">console</span>.log(args);
+    console.log(args);
   }
 
   onDeselect = (...args) =&gt; {
-    <span class="hljs-built_in">console</span>.log(args);
+    console.log(args);
   }
 
   useAnim = (e) =&gt; {
-    <span class="hljs-keyword">this</span>.setState({
+    this.setState({
       useAnim: e.target.checked,
     });
   }
 
   render() {
-    <span class="hljs-keyword">const</span> dropdownMenuStyle = {
-      maxHeight: <span class="hljs-number">200</span>,
+    const dropdownMenuStyle = {
+      maxHeight: 200,
     };
-    <span class="hljs-keyword">return</span> (
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>multiple select（scroll the menu）<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+    return (
+      &lt;div&gt;
+        &lt;h2&gt;multiple select（scroll the menu）&lt;/h2&gt;
 
-        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>
+        &lt;p&gt;
+          &lt;label&gt;
             anim
-            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">checked</span>=<span class="hljs-value">{this.state.useAnim}</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">onChange</span>=<span class="hljs-value">{this.useAnim}</span> /&gt;</span>
-          <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">width:</span> <span class="hljs-attribute">300</span> }}&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">Select</span>
-            <span class="hljs-attribute">value</span>=<span class="hljs-value">{this.state.value}</span>
-            <span class="hljs-attribute">animation</span>=<span class="hljs-value">{this.state.useAnim</span> ? '<span class="hljs-attribute">slide-up</span>' <span class="hljs-attribute">:</span> <span class="hljs-attribute">null</span>}
-            <span class="hljs-attribute">choiceTransitionName</span>=<span class="hljs-value">"rc-select-selection__choice-zoom"</span>
-            <span class="hljs-attribute">dropdownMenuStyle</span>=<span class="hljs-value">{dropdownMenuStyle}</span>
-            <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">width:</span> '<span class="hljs-attribute">300px</span>' }}
-            <span class="hljs-attribute">multiple</span>
-            <span class="hljs-attribute">allowClear</span>
-            <span class="hljs-attribute">optionFilterProp</span>=<span class="hljs-value">"children"</span>
-            <span class="hljs-attribute">optionLabelProp</span>=<span class="hljs-value">"children"</span>
-            <span class="hljs-attribute">onSelect</span>=<span class="hljs-value">{this.onSelect}</span>
-            <span class="hljs-attribute">onDeselect</span>=<span class="hljs-value">{this.onDeselect}</span>
-            <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"please select"</span>
-            <span class="hljs-attribute">onChange</span>=<span class="hljs-value">{this.onChange}</span>
-            <span class="hljs-attribute">onFocus</span>=<span class="hljs-value">{()</span> =&gt;</span> console.log('focus')}
+            &lt;input checked={this.state.useAnim} type="checkbox" onChange={this.useAnim} /&gt;
+          &lt;/label&gt;
+        &lt;/p&gt;
+        &lt;div style={{ width: 300 }}&gt;
+          &lt;Select
+            value={this.state.value}
+            animation={this.state.useAnim ? 'slide-up' : null}
+            choiceTransitionName="rc-select-selection__choice-zoom"
+            dropdownMenuStyle={dropdownMenuStyle}
+            style={{ width: '300px' }}
+            multiple
+            allowClear
+            optionFilterProp="children"
+            optionLabelProp="children"
+            onSelect={this.onSelect}
+            onDeselect={this.onDeselect}
+            placeholder="please select"
+            onChange={this.onChange}
+            onFocus={() =&gt; console.log('focus')}
             onBlur={(v) =&gt; console.log('blur', v)}
             tokenSeparators={[' ', ',']}
             renderExtraTopper={() =&gt; '自定义头部内容'}
             showChosenAmount
             customAmount={this.state.chosenAmount}
+            customDropDown={() =&gt; (&lt;div&gt;&lt;h1&gt;自定义下拉框内容&lt;/h1&gt;&lt;/div&gt;)}
           &gt;
             {children}
-          <span class="hljs-tag">&lt;/<span class="hljs-title">Select</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    )</span>;
+          &lt;/Select&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
   }
 }
 
-ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Test</span> /&gt;</span>, document.getElementById('__react-content'));
-</span></code></pre></div>
+ReactDOM.render(&lt;Test /&gt;, document.getElementById('__react-content'));
+</code></pre></div>
   </div>
   <a href="">
     <img style="position: absolute; top: 0; right: 0; border: 0;"
