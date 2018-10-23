@@ -80,8 +80,6 @@ class Select extends React.Component {
     showAction: ['click'],
     tokenSeparators: [],
     autoClearSearchValue: true,
-    renderExtraTopper: noop,
-    showChosenAmount: false
   };
 
   constructor(props) {
@@ -1330,12 +1328,13 @@ class Select extends React.Component {
 
   renderChosenAmount () {
     const { chosenAmount } = this.state;
-    const { prefixCls } = this.props;
+    const { prefixCls, customAmount } = this.props;
+    const amount = customAmount ? customAmount : chosenAmount
     const className = `${prefixCls}-selection__rendered`;
 
     return (
       <div className={className} ref={this.saveTopCtrlRef} onMouseDown={preventDefaultEvent}>
-        <input style={{ border: 'none', cursor: 'unset' }} type="text" readOnly value={chosenAmount}/>
+        <input style={{ border: 'none', cursor: 'unset' }} type="text" readOnly value={amount}/>
       </div>
     )
   }
@@ -1414,6 +1413,7 @@ class Select extends React.Component {
         menuItemSelectedIcon={props.menuItemSelectedIcon}
         renderExtraTopper={props.renderExtraTopper}
         showChosenAmount={props.showChosenAmount}
+        customAmount={props.customAmount}
       >
         <div
           id={props.id}
