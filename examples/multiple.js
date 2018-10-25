@@ -18,18 +18,18 @@ class Test extends React.Component {
   state = {
     useAnim: 0,
     value: [],
-    chosenAmount: '请选择'
+    customInfo: ''
   }
 
   onChange = (value, options) => {
     console.log('onChange', value, options);
-    let chosenAmount = 
+    let customInfo = 
       value.length === 0 
         ? '请选择' 
         : value.length === children.length ? '全部' : `${value.length}个`;
     this.setState({
       value,
-      chosenAmount
+      customInfo
     });
   }
 
@@ -81,7 +81,7 @@ class Test extends React.Component {
             tokenSeparators={[' ', ',']}
             renderExtraTopper={() => '自定义头部内容'}
             showChosenAmount
-            customAmount={this.state.chosenAmount}
+            customAmount={this.state.customInfo}
             customDropDown={() => (<div><h1>自定义下拉框内容</h1></div>)}
           >
             {children}

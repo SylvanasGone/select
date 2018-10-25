@@ -96,7 +96,7 @@ class Select extends React.Component {
       optionsInfo,
       // a flag for aviod redundant getOptionsInfoFromProps call
       skipBuildOptionsInfo: true,
-      chosenAmount: '请选择',
+      chosenInfo: '',
     };
 
     this.saveInputRef = saveRef(this, 'inputRef');
@@ -263,7 +263,7 @@ class Select extends React.Component {
       value = value.concat([selectedValue]);
       if (props.showChosenAmount) {
         this.setState({
-          chosenAmount: `${value.length}个`
+          chosenInfo: `${value.length}个`
         })
       }
     } else {
@@ -305,11 +305,11 @@ class Select extends React.Component {
     if (props.showChosenAmount) {
       const { value } = this.state
       this.setState({
-        chosenAmount: `${value.length - 1}个`
+        chosenInfo: `${value.length - 1}个`
       }, () => {
         if (value.length === 1) {
           this.setState({
-            chosenAmount: '请选择'
+            chosenInfo: '请选择'
           })
         }
       })
@@ -421,7 +421,7 @@ class Select extends React.Component {
       if (value.length) {
         this.fireChange([]);
         this.setState({
-          chosenAmount: '请选择'
+          chosenInfo: '请选择'
         })
       }
       this.setOpenState(false, true);
@@ -1327,14 +1327,14 @@ class Select extends React.Component {
   }
 
   renderChosenAmount () {
-    const { chosenAmount } = this.state;
-    const { prefixCls, customAmount } = this.props;
-    const amount = customAmount ? customAmount : chosenAmount
+    const { chosenInfo } = this.state;
+    const { prefixCls, customInfo } = this.props;
+    const info = customInfo ? customInfo : chosenInfo
     const className = `${prefixCls}-selection__rendered`;
 
     return (
       <div className={className} ref={this.saveTopCtrlRef} onMouseDown={preventDefaultEvent}>
-        <input style={{ border: 'none', cursor: 'unset' }} type="text" readOnly value={amount}/>
+        <input style={{ border: 'none', cursor: 'unset' }} type="text" readOnly placeholder="请选择" value={info}/>
       </div>
     )
   }
@@ -1413,7 +1413,7 @@ class Select extends React.Component {
         menuItemSelectedIcon={props.menuItemSelectedIcon}
         renderExtraTopper={props.renderExtraTopper}
         showChosenAmount={props.showChosenAmount}
-        customAmount={props.customAmount}
+        customInfo={props.customInfo}
         customDropDown={props.customDropDown}
       >
         <div
