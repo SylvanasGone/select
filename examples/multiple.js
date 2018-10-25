@@ -1765,7 +1765,7 @@ var Test = function (_React$Component) {
                 return '自定义头部内容';
               },
               showChosenAmount: true,
-              customAmount: this.state.chosenAmount,
+              customAmount: this.state.customInfo,
               customDropDown: function customDropDown() {
                 return __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(
                   'div',
@@ -1794,15 +1794,15 @@ var _initialiseProps = function _initialiseProps() {
   this.state = {
     useAnim: 0,
     value: [],
-    chosenAmount: '请选择'
+    customInfo: ''
   };
 
   this.onChange = function (value, options) {
     console.log('onChange', value, options);
-    var chosenAmount = value.length === 0 ? '请选择' : value.length === children.length ? '全部' : value.length + '\u4E2A';
+    var customInfo = value.length === 0 ? '请选择' : value.length === children.length ? '全部' : value.length + '\u4E2A';
     _this2.setState({
       value: value,
-      chosenAmount: chosenAmount
+      customInfo: customInfo
     });
   };
 
