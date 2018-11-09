@@ -94,7 +94,7 @@ export default class DropdownMenu extends React.Component {
   renderTopper = (...args) => {
     const { renderExtraTopper } = this.props;
     return renderExtraTopper ? (
-      <div style={{ padding: '16px' }}>
+      <div style={{ padding: '14px' }}>
         {renderExtraTopper(...args)}
       </div>
     ) : null;
