@@ -1334,7 +1334,7 @@ class Select extends React.Component {
 
     return (
       <div className={className} ref={this.saveTopCtrlRef} onMouseDown={preventDefaultEvent}>
-        <input style={{ border: 'none', cursor: 'unset', paddingLeft: '5px' }} type="text" readOnly placeholder="请选择" value={info}/>
+        <input style={{ border: 'none', cursor: 'unset', paddingLeft: '6px' }} type="text" readOnly placeholder="请选择" value={info}/>
       </div>
     )
   }

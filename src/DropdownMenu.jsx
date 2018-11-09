@@ -94,7 +94,7 @@ export default class DropdownMenu extends React.Component {
   renderTopper = (...args) => {
     const { renderExtraTopper } = this.props;
     return renderExtraTopper ? (
-      <div style={{ padding: '10px' }}>
+      <div style={{ padding: '16px' }}>
         {renderExtraTopper(...args)}
       </div>
     ) : null;
@@ -103,7 +103,7 @@ export default class DropdownMenu extends React.Component {
   renderCustomDropDown = (...args) => {
     const { customDropDown } = this.props;
     return customDropDown ? (
-      <div style={{ padding: '10px' }}>
+      <div style={{ padding: '16px' }}>
         {customDropDown(...args)}
       </div>
     ) : null
