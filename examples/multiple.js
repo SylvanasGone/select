@@ -1717,6 +1717,17 @@ var Test = function (_React$Component) {
       var dropdownMenuStyle = {
         maxHeight: 200
       };
+      var suffixIcon = function suffixIcon() {
+        return __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(
+          'div',
+          null,
+          __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(
+            'ul',
+            null,
+            'test'
+          )
+        );
+      };
       return __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(
         'div',
         null,
@@ -1776,7 +1787,8 @@ var Test = function (_React$Component) {
                     '\u81EA\u5B9A\u4E49\u4E0B\u62C9\u6846\u5185\u5BB9'
                   )
                 );
-              }
+              },
+              suffixIcon: suffixIcon()
             },
             children
           )
