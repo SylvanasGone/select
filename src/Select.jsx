@@ -1335,7 +1335,7 @@ class Select extends React.Component {
 
     return (
       <div style={{ display: 'flex', justifyContent: 'space-between' }} className={className} ref={this.saveTopCtrlRef} onMouseDown={preventDefaultEvent}>
-        <input style={{ border: 'none', cursor: 'unset', paddingLeft: '6px', color: color }} type="text" readOnly placeholder="请选择" value={info}/>
+        <input style={{ width: '100%', border: 'none', cursor: 'unset', paddingLeft: '6px', color: color }} type="text" readOnly placeholder="请选择" value={info}/>
         {suffixIcon}
       </div>
     )
