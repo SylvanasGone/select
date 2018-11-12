@@ -51,6 +51,13 @@ class Test extends React.Component {
     const dropdownMenuStyle = {
       maxHeight: 200,
     };
+    const suffixIcon = () => {
+      return (
+        <div>
+          <ul>test</ul>
+        </div>
+      )
+    }
     return (
       <div>
         <h2>multiple select（scroll the menu）</h2>
@@ -83,6 +90,7 @@ class Test extends React.Component {
             showChosenAmount
             customAmount={this.state.customInfo}
             customDropDown={() => (<div><h1>自定义下拉框内容</h1></div>)}
+            suffixIcon={suffixIcon()}
           >
             {children}
           </Select>
