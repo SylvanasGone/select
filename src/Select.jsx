@@ -1331,10 +1331,11 @@ class Select extends React.Component {
     const { prefixCls, customInfo } = this.props;
     const info = customInfo ? customInfo : chosenInfo
     const className = `${prefixCls}-selection__rendered`;
+    const color = info === '请选择' ? '#BFBFBF' : '#595959'
 
     return (
       <div style={{ display: 'flex', justifyContent: 'space-between' }} className={className} ref={this.saveTopCtrlRef} onMouseDown={preventDefaultEvent}>
-        <input style={{ width: '100%', border: 'none', cursor: 'unset', paddingLeft: '6px' }} type="text" readOnly placeholder="请选择" value={info}/>
+        <input style={{ width: '100%', border: 'none', cursor: 'unset', paddingLeft: '6px', color: color }} type="text" readOnly placeholder="请选择" value={info}/>
       </div>
     )
   }
