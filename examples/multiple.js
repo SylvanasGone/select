@@ -61,8 +61,10 @@ class Test extends React.Component {
             <input checked={this.state.useAnim} type="checkbox" onChange={this.useAnim} />
           </label>
         </p>
-        <div style={{ width: 300 }}>
+        <div>
           <Select
+            dropdownMatchSelectWidth={false}
+            customDropDownWidth={20}
             value={this.state.value}
             animation={this.state.useAnim ? 'slide-up' : null}
             choiceTransitionName="rc-select-selection__choice-zoom"

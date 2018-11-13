@@ -59,15 +59,18 @@ export default class SelectTrigger extends React.Component {
 
     this.state = {
       dropdownWidth: null,
+      currentWidth: null
     };
   }
 
   componentDidMount() {
     this.setDropdownWidth();
+    this.setCurrentWidth();
   }
 
   componentDidUpdate() {
     this.setDropdownWidth();
+    this.setCurrentWidth();
   }
 
   setDropdownWidth = () => {
@@ -77,6 +80,15 @@ export default class SelectTrigger extends React.Component {
     const width = ReactDOM.findDOMNode(this).offsetWidth;
     if (width !== this.state.dropdownWidth) {
       this.setState({ dropdownWidth: width });
+    }
+  }
+
+  setCurrentWidth = () => {
+    const width = ReactDOM.findDOMNode(this).offsetWidth
+    if (width !== this.state.currentWidth) {
+      this.setState({
+        currentWidth: width
+      })
     }
   }
 
@@ -137,6 +149,7 @@ export default class SelectTrigger extends React.Component {
       dropdownMatchSelectWidth,
       renderExtraTopper,
       customDropDown,
+      customDropDownWidth
     } = props;
     const dropdownPrefixCls = this.getDropdownPrefixCls();
     const popupClassName = {
@@ -162,6 +175,10 @@ export default class SelectTrigger extends React.Component {
     const widthProp = dropdownMatchSelectWidth ? 'width' : 'minWidth';
     if (this.state.dropdownWidth) {
       popupStyle[widthProp] = `${this.state.dropdownWidth}px`;
+    }
+    const { currentWidth } = this.state
+    if (!dropdownMatchSelectWidth && customDropDownWidth && currentWidth) {
+      popupStyle['width'] = `${currentWidth + customDropDownWidth}px`
     }
 
     return (
