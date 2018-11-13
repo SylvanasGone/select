@@ -1441,7 +1441,7 @@ class Select extends React.Component {
           >
             {showChosenAmount ? this.renderChosenAmount() : ctrlNode}
             {this.renderClear()}
-            {multiple || !props.showArrow ? null : (
+            {!props.showArrow ? null : (
               <span
                 key="arrow"
                 className={`${prefixCls}-arrow`}
