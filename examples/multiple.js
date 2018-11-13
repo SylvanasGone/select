@@ -1737,10 +1737,12 @@ var Test = function (_React$Component) {
         ),
         __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(
           'div',
-          { style: { width: 300 } },
+          null,
           __WEBPACK_IMPORTED_MODULE_4_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_5_rc_select___default.a,
             {
+              dropdownMatchSelectWidth: false,
+              customDropDownWidth: 20,
               value: this.state.value,
               animation: this.state.useAnim ? 'slide-up' : null,
               choiceTransitionName: 'rc-select-selection__choice-zoom',
