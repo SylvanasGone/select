@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>mul-tag-suggest.js - example - @fdp/rc-select@12.3.0</title>
+  <title>dropdownRender.js - example - @fdp/rc-select@12.3.0</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -270,69 +270,95 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
     <div class="example" id="__react-content"></div>
 
     <div class="highlight"><pre><code language="js"><span class="hljs-comment">/* eslint no-console: 0 */</span>
-
 <span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> Select, { Option } <span class="hljs-keyword">from</span> <span class="hljs-string">'rc-select'</span>;
 <span class="hljs-keyword">import</span> <span class="hljs-string">'rc-select/assets/index.less'</span>;
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
 
-<span class="hljs-keyword">import</span> { fetch } <span class="hljs-keyword">from</span> <span class="hljs-string">'./common/tbFetchSuggest'</span>;
+<span class="hljs-keyword">const</span> children = [];
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">10</span>; i &lt; <span class="hljs-number">36</span>; i++) {
+  children.push(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Option</span> <span class="hljs-attribute">key</span>=<span class="hljs-value">{i.toString(36)</span> + <span class="hljs-attribute">i</span>} <span class="hljs-attribute">test</span>=<span class="hljs-value">{i}</span>&gt;</span>{i.toString(36) + i}<span class="hljs-tag">&lt;/<span class="hljs-title">Option</span>&gt;</span>)</span>;
+}
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Search</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
   state = {
-    data: [],
-    value: [],
+    value: [<span class="hljs-string">'name2'</span>, <span class="hljs-string">'name3'</span>],
   };
 
-  onChange = (value) =&gt; {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'onChange '</span>, value);
+  onChange = (value, option) =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`changed <span class="hljs-subst">${value}</span>`</span>, option);
     <span class="hljs-keyword">this</span>.setState({
       value,
     });
   };
 
-  onSelect = (value) =&gt; {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'select '</span>, value);
+  onSelect = (value, option) =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`selected <span class="hljs-subst">${value}</span>`</span>, option.props);
   };
 
-  fetchData = (value) =&gt; {
-    fetch(value, (data) =&gt; {
-      <span class="hljs-keyword">this</span>.setState({
-        data,
-      });
-    });
+  onDeselect = (value, option) =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`deselected <span class="hljs-subst">${value}</span>`</span>, option);
   };
 
   render() {
-    <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">this</span>.state.data;
-    <span class="hljs-keyword">const</span> options = data.map((d) =&gt; {
-      <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Option</span> <span class="hljs-attribute">key</span>=<span class="hljs-value">{d.value}</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span>&gt;</span>{d.text}<span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">Option</span>&gt;</span>;</span>
-    });
-    <span class="hljs-keyword">return</span> (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>multiple suggest<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>
+        <span class="hljs-attribute">onMouseDown</span>=<span class="hljs-value">{(e)</span> =&gt;</span> {
+          e.preventDefault();
+          return false;
+        }}
+      &gt;
+        <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>custom dropdown render select<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
 
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">Select</span>
-          <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">width:</span> <span class="hljs-attribute">500</span> }}
-          <span class="hljs-attribute">labelInValue</span>
-          <span class="hljs-attribute">optionLabelProp</span>=<span class="hljs-value">"children"</span>
-          <span class="hljs-attribute">value</span>=<span class="hljs-value">{this.state.value}</span>
-          <span class="hljs-attribute">onChange</span>=<span class="hljs-value">{this.onChange}</span>
-          <span class="hljs-attribute">tags</span>
-          <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"placeholder"</span>
-          <span class="hljs-attribute">notFoundContent</span>=<span class="hljs-value">""</span>
-          <span class="hljs-attribute">onSearch</span>=<span class="hljs-value">{this.fetchData}</span>
-          <span class="hljs-attribute">onSelect</span>=<span class="hljs-value">{this.onSelect}</span>
-          <span class="hljs-attribute">filterOption</span>=<span class="hljs-value">{false}</span>
-        &gt;</span>
-          {options}
-        <span class="hljs-tag">&lt;/<span class="hljs-title">Select</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">Select</span>
+            <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"placeholder"</span>
+            <span class="hljs-attribute">tags</span>
+            <span class="hljs-attribute">dropdownMenuStyle</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">maxHeight:</span> <span class="hljs-attribute">200</span> }}
+            <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">width:</span> <span class="hljs-attribute">500</span> }}
+            <span class="hljs-attribute">value</span>=<span class="hljs-value">{this.state.value}</span>
+            <span class="hljs-attribute">onChange</span>=<span class="hljs-value">{this.onChange}</span>
+            <span class="hljs-attribute">onSelect</span>=<span class="hljs-value">{this.onSelect}</span>
+            <span class="hljs-attribute">onDeselect</span>=<span class="hljs-value">{this.onDeselect}</span>
+            <span class="hljs-attribute">tokenSeparators</span>=<span class="hljs-value">{['</span> ', ',']}
+            <span class="hljs-attribute">onFocus</span>=<span class="hljs-value">{()</span> =&gt;</span> console.log('focus')}
+            onBlur={() =&gt; console.log('blur')}
+            dropdownRender={(menu) =&gt;
+              <span class="hljs-tag">&lt;<span class="hljs-title">React.Fragment</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">div</span>
+                  <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{</span>
+                    () =&gt;</span> {
+                      console.log('before clicked')
+                    }
+                  }
+                &gt;
+                  BEFORE
+                <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+                {menu}
+
+                <span class="hljs-tag">&lt;<span class="hljs-title">div</span>
+                  <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{</span>
+                    () =&gt;</span> {
+                      console.log('after clicked')
+                    }
+                  }
+                &gt;
+                  AFTER
+                <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+              <span class="hljs-tag">&lt;/<span class="hljs-title">React.Fragment</span>&gt;</span>
+            }
+          &gt;
+            {children}
+          <span class="hljs-tag">&lt;/<span class="hljs-title">Select</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>)</span>;
+    )</span>;
   }
 }
 
-ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Search</span> /&gt;</span>, document.getElementById('__react-content'));
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Test</span> /&gt;</span>, document.getElementById('__react-content'));
+
 </span></code></pre></div>
   </div>
   <a href="">
@@ -343,7 +369,7 @@ ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-t
   </a>
   <script>FastClick.attach(document.body);</script>
   <script src="../common.js?nowrap"></script>
-  <script src="mul-tag-suggest.js?nowrap"></script>
+  <script src="dropdownRender.js?nowrap"></script>
 </body>
 
 </html>

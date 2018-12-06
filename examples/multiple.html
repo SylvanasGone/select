@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>multiple.js - example - @fdp/rc-select@12.2.0</title>
+  <title>multiple.js - example - @fdp/rc-select@12.3.0</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -263,7 +263,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 <body>
   <div class="container">
     <div class="header">
-      <h1>@fdp/rc-select@12.2.0</h1>
+      <h1>@fdp/rc-select@12.3.0</h1>
 
       <p>React Select for ZA-fdp based on rc-select</p>
     </div>
@@ -318,10 +318,20 @@ class Test extends React.Component {
     });
   }
 
+  dropdownRender = (menu) =&gt; {
+    return (
+      &lt;div&gt;
+        &lt;span&gt;自定义头部内容&lt;/span&gt;
+        &lt;div&gt;{menu}&lt;/div&gt;  
+      &lt;/div&gt;
+    )
+  }
+
   render() {
     const dropdownMenuStyle = {
       maxHeight: 200,
     };
+    
     return (
       &lt;div&gt;
         &lt;h2&gt;multiple select（scroll the menu）&lt;/h2&gt;
@@ -334,8 +344,8 @@ class Test extends React.Component {
         &lt;/p&gt;
         &lt;div&gt;
           &lt;Select
-            dropdownMatchSelectWidth={false}
-            customDropDownWidth={20}
+            // dropdownMatchSelectWidth={false}
+            // customDropDownWidth={20}
             value={this.state.value}
             animation={this.state.useAnim ? 'slide-up' : null}
             choiceTransitionName="rc-select-selection__choice-zoom"
@@ -352,10 +362,11 @@ class Test extends React.Component {
             onFocus={() =&gt; console.log('focus')}
             onBlur={(v) =&gt; console.log('blur', v)}
             tokenSeparators={[' ', ',']}
-            renderExtraTopper={() =&gt; '自定义头部内容'}
+            // renderExtraTopper={() =&gt; '自定义头部内容'}
             showChosenAmount
             customAmount={this.state.customInfo}
-            customDropDown={() =&gt; (&lt;div&gt;&lt;h1&gt;自定义下拉框内容&lt;/h1&gt;&lt;/div&gt;)}
+            // customDropDown={() =&gt; (&lt;div&gt;&lt;h1&gt;自定义下拉框内容&lt;/h1&gt;&lt;/div&gt;)}
+            dropdownRender={this.dropdownRender}
           &gt;
             {children}
           &lt;/Select&gt;
