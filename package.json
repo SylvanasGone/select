@@ -1,7 +1,7 @@
 {
-  "name": "@fdp/rc-select",
-  "version": "12.2.0",
-  "description": "React Select for ZA-fdp based on rc-select",
+  "name": "rc-select",
+  "version": "8.6.4",
+  "description": "React Select",
   "keywords": [
     "react",
     "react-component",
@@ -27,6 +27,7 @@
     "pub": "rc-tools run pub --babel-runtime",
     "lint": "rc-tools run lint",
     "lint:fix": "rc-tools run lint --fix",
+    "prettier": "rc-tools run prettier",
     "test": "jest",
     "prepublish": "rc-tools run guard",
     "coverage": "jest --coverage"
@@ -43,6 +44,9 @@
     ],
     "transform": {
       "\\.jsx?$": "./node_modules/rc-tools/scripts/jestPreprocessor.js"
+    },
+    "globals": {
+      "__JEST__DEV__": true
     }
   },
   "devDependencies": {

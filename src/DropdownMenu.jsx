@@ -10,6 +10,7 @@ import { getSelectKeys, preventDefaultEvent, saveRef } from './util';
 export default class DropdownMenu extends React.Component {
   static displayName = 'DropdownMenu';
   static propTypes = {
+    ariaId: PropTypes.string,
     defaultActiveFirstOption: PropTypes.bool,
     value: PropTypes.any,
     dropdownMenuStyle: PropTypes.object,
@@ -23,10 +24,7 @@ export default class DropdownMenu extends React.Component {
     inputValue: PropTypes.string,
     visible: PropTypes.bool,
     firstActiveValue: PropTypes.string,
-    menuItemSelectedIcon: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.node,
-    ]),
+    menuItemSelectedIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   };
 
   constructor(props) {
@@ -45,7 +43,11 @@ export default class DropdownMenu extends React.Component {
       this.lastVisible = false;
     }
     // freeze when hide
-    return nextProps.visible || nextProps.inputValue !== this.props.inputValue;
+    return (
+      (this.props.visible && !nextProps.visible) ||
+      nextProps.visible ||
+      nextProps.inputValue !== this.props.inputValue
+    );
   }
 
   componentDidUpdate(prevProps) {
@@ -74,20 +76,14 @@ export default class DropdownMenu extends React.Component {
     const scrollIntoViewOpts = {
       onlyScrollIfNeeded: true,
     };
-    if (
-      (!value || value.length === 0) && firstActiveValue
-    ) {
+    if ((!value || value.length === 0) && firstActiveValue) {
       scrollIntoViewOpts.alignWithTop = true;
     }
 
     // Delay to scroll since current frame item position is not ready when pre view is by filter
     // https://github.com/ant-design/ant-design/issues/11268#issuecomment-406634462
     this.rafInstance = raf(() => {
-      scrollIntoView(
-        itemComponent,
-        findDOMNode(this.menuRef),
-        scrollIntoViewOpts
-      );
+      scrollIntoView(itemComponent, findDOMNode(this.menuRef), scrollIntoViewOpts);
     });
   };
 
@@ -139,6 +135,8 @@ export default class DropdownMenu extends React.Component {
       if (selectedKeys.length || firstActiveValue) {
         if (props.visible && !this.lastVisible) {
           activeKeyProps.activeKey = selectedKeys[0] || firstActiveValue;
+        } else if (!props.visible) {
+          activeKeyProps.activeKey = null;
         }
         let foundFirst = false;
         // set firstActiveItem via cloning menus
@@ -146,9 +144,7 @@ export default class DropdownMenu extends React.Component {
         const clone = item => {
           if (
             (!foundFirst && selectedKeys.indexOf(item.key) !== -1) ||
-            (!foundFirst &&
-              !selectedKeys.length &&
-              firstActiveValue.indexOf(item.key) !== -1)
+            (!foundFirst && !selectedKeys.length && firstActiveValue.indexOf(item.key) !== -1)
           ) {
             foundFirst = true;
             return cloneElement(item, {
@@ -212,6 +208,7 @@ export default class DropdownMenu extends React.Component {
           transform: 'translateZ(0)'
         }}
         onFocus={onPopupFocus}
+        id={this.props.ariaId}
         onMouseDown={preventDefaultEvent}
         onScroll={onPopupScroll}
       >
