@@ -45,10 +45,13 @@ export default class SelectTrigger extends React.Component {
     popupClassName: PropTypes.string,
     children: PropTypes.any,
     showAction: PropTypes.arrayOf(PropTypes.string),
-    menuItemSelectedIcon: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.node,
-    ]),
+    menuItemSelectedIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+    dropdownRender: PropTypes.func,
+    ariaId: PropTypes.string,
+  };
+
+  static defaultProps = {
+    dropdownRender: menu => menu,
   };
 
   constructor(props) {
@@ -74,14 +77,11 @@ export default class SelectTrigger extends React.Component {
   }
 
   setDropdownWidth = () => {
-    if (!this.props.dropdownMatchSelectWidth) {
-      return;
-    }
     const width = ReactDOM.findDOMNode(this).offsetWidth;
     if (width !== this.state.dropdownWidth) {
       this.setState({ dropdownWidth: width });
     }
-  }
+  };
 
   setCurrentWidth = () => {
     const width = ReactDOM.findDOMNode(this).offsetWidth
@@ -102,10 +102,14 @@ export default class SelectTrigger extends React.Component {
 
   getDropdownElement = newProps => {
     const props = this.props;
-    return (
+
+    const { dropdownRender, ariaId } = props;
+
+    const menuNode = (
       <DropdownMenu
         ref={this.saveDropdownMenuRef}
         {...newProps}
+        ariaId={ariaId}
         prefixCls={this.getDropdownPrefixCls()}
         onMenuSelect={props.onMenuSelect}
         onMenuDeselect={props.onMenuDeselect}
@@ -120,6 +124,8 @@ export default class SelectTrigger extends React.Component {
         customDropDown={props.customDropDown}
       />
     );
+
+    return dropdownRender(menuNode, props);
   };
 
   getDropdownTransitionName = () => {

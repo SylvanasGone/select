@@ -47,10 +47,20 @@ class Test extends React.Component {
     });
   }
 
+  dropdownRender = (menu) => {
+    return (
+      <div>
+        <span>自定义头部内容</span>
+        <div>{menu}</div>  
+      </div>
+    )
+  }
+
   render() {
     const dropdownMenuStyle = {
       maxHeight: 200,
     };
+    
     return (
       <div>
         <h2>multiple select（scroll the menu）</h2>
@@ -63,8 +73,8 @@ class Test extends React.Component {
         </p>
         <div>
           <Select
-            dropdownMatchSelectWidth={false}
-            customDropDownWidth={20}
+            // dropdownMatchSelectWidth={false}
+            // customDropDownWidth={20}
             value={this.state.value}
             animation={this.state.useAnim ? 'slide-up' : null}
             choiceTransitionName="rc-select-selection__choice-zoom"
@@ -81,10 +91,11 @@ class Test extends React.Component {
             onFocus={() => console.log('focus')}
             onBlur={(v) => console.log('blur', v)}
             tokenSeparators={[' ', ',']}
-            renderExtraTopper={() => '自定义头部内容'}
+            // renderExtraTopper={() => '自定义头部内容'}
             showChosenAmount
             customAmount={this.state.customInfo}
-            customDropDown={() => (<div><h1>自定义下拉框内容</h1></div>)}
+            // customDropDown={() => (<div><h1>自定义下拉框内容</h1></div>)}
+            dropdownRender={this.dropdownRender}
           >
             {children}
           </Select>
